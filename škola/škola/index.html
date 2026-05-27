@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pojďme děti připravit do života</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-quote">
+    <p>„Vzdělávání je nejmocnější zbraň, kterou můžeme použít k tomu, aby se změnil svět.“</p>
+  </div>
+
+  <div class="container">
+    <div class="text-section">
+      <h1>Pojďme děti<br>připravit do života</h1>
+      <p class="mission">
+        Naším cílem je vytvořit prostor, kde se mladí lidé naučí věci, které jim škola často nedá — od finanční gramotnosti, přes kritické myšlení až po praktické dovednosti do života.  
+        <br><br>
+        Chceme toho dosáhnout prostřednictvím interaktivních workshopů, online kurzů a projektů, které dávají smysl.  
+        <br><br>
+        Každý může pomoct – sdílením našich myšlenek, zapojením se do komunity nebo podporou našich aktivit. Společně to zvládneme.
+      </p>
+      <a href="#why" class="btn">Zjistit víc</a>
+    </div>
+
+    <div class="image-section">
+      <img src="skola.jpeg" alt="Inspirace" />
+    </div>
+  </div>
+
+  <!-- Nová sekce -->
+  <section id="why" class="fade-in important">
+    <h2>Proč to děláme</h2>
+    <p>
+      Dětem v dospělosti nepomůže to, že umí řešit nerovnice, znají Pythagorovu větu nebo vědí, kdo byl Karel Hynek Mácha.  
+      <br><br>
+      Pomůže jim, když pochopí, co je to hypotéka, jak fungují peníze, jak se starat o své zdraví a duševní pohodu, a jak se rozhodovat s rozumem i srdcem.  
+      <br><br>
+      Chceme, aby škola byla víc o životě — ne o zapamatování informací, které v reálném světě nikdo nepoužije.
+    </p>
+  </section>
+
+  <section id="vision" class="fade-in">
+    <h2>Naše vize</h2>
+    <p>
+      Chceme změnit způsob, jakým se mladí lidé připravují na budoucnost.  
+      Učíme je přemýšlet, tvořit a nebát se chyb. Věříme, že vzdělávání má být zážitek, ne povinnost.
+    </p>
+  </section>
+
+  <section class="fade-in">
+    <h2>Náš tým</h2>
+    <p>
+      Jsme skupina studentů, učitelů a tvůrců, kteří věří, že svět může být lepší, pokud začneme učit jinak.  
+      Každý z nás přináší svůj pohled — z praxe, z výuky i z technologického světa.
+    </p>
+  </section>
+
+  <section class="fade-in contact">
+    <h2>Kontaktuj nás</h2>
+    <p>Chceš se přidat nebo máš nápad? Napiš nám!</p>
+    <a href="#" class="btn">Napiš zprávu</a>
+  </section>
+
+  <footer>
+    <p>© 2025 Pojďme děti připravit do života</p>
+  </footer>
+
+  <script>
+    // Efekt fade-in při scrollování
+    const fadeEls = document.querySelectorAll('.fade-in');
+    window.addEventListener('scroll', () => {
+      fadeEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          el.classList.add('visible');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
