@@ -20,8 +20,6 @@
     --border-dark: #b8b5ac;
   }
 
-  html { scroll-behavior: smooth; }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -825,6 +823,43 @@
     </a>
   </div>
 </footer>
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (!targetElement) return;
+
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      
+      // TADY SI MŮŽEŠ UPRAVIT RYCHLOST (1000 = 1 sekunda)
+      const duration = 1200; 
+      let start = null;
+
+      window.requestAnimationFrame(step);
+
+      function step(timestamp) {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        
+        // Funkce pro prémiový plynulý dojezd (pomalý start, rychlý střed, pomalý konec)
+        const easeInOutCubic = progress => progress < .5 ? 4 * progress * progress * progress : (progress - 1) * (2 * progress - 2) * (2 * progress - 2) + 1;
+        const percentage = Math.min(progress / duration, 1);
+
+        window.scrollTo(0, startPosition + distance * easeInOutCubic(percentage));
+
+        if (progress < duration) {
+          window.requestAnimationFrame(step);
+        }
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
