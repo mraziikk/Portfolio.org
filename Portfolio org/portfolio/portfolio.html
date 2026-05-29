@@ -199,10 +199,9 @@
             box-shadow: 0 0 25px red;
         }
 
-        /* Dynamický kontejner pro jemný přechod */
         #dynamic-content {
             transition: opacity 0.3s ease-in-out;
-            min-height: 250px; /* Zabraňuje "poskakování" tlačítek při změně textu */
+            min-height: 250px;
         }
 
         .typing-text{
@@ -216,7 +215,7 @@
         }
 
         .typing-text span::before{
-            content: "software Developer";
+            content: "";
             color: red;
             animation: words 20s infinite;
         }
@@ -286,7 +285,7 @@
         <div class="home-content">
             <div id="dynamic-content">
                 <h1>Hi, its <span>Lukas</span></h1>
-                <h3 class="typing-text">I am <span>Web developer</span></h3>
+                <h3 class="typing-text">I am <span></span></h3>
                 <p>I am an IT student passionate about web technologies and software development. I enjoy building dynamic websites, managing technical projects, and bringing creative ideas to life.</p>
             </div>
             
@@ -301,11 +300,10 @@
     </section>
 
     <script>
-        // Databáze textů pro jednotlivé záložky
         const contentData = {
             home: `
                 <h1>Hi, its <span>Lukas</span></h1>
-                <h3 class="typing-text">I am <span>Web developer</span></h3>
+                <h3 class="typing-text">I am <span></span></h3>
                 <p>I am an IT student passionate about web technologies and software development. I enjoy building dynamic websites, managing technical projects, and bringing creative ideas to life.</p>
             `,
             services: `
@@ -340,22 +338,17 @@
         const navLinks = document.querySelectorAll('nav a');
         const dynamicContent = document.getElementById('dynamic-content');
 
-        // Funkce pro kliknutí na odkazy v menu
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                e.preventDefault(); // Zabrání přeskočení nahoru
+                e.preventDefault();
                 
-                // 1. Změna červeného podtržení (active class)
                 navLinks.forEach(nav => nav.classList.remove('active'));
                 this.classList.add('active');
 
-                // 2. Zjištění, na co uživatel klikl
                 const section = this.getAttribute('data-section');
                 
-                // 3. Efekt ztmavení
                 dynamicContent.style.opacity = 0;
                 
-                // 4. Výměna textu a opětovné rozsvícení (po 300ms)
                 setTimeout(() => {
                     dynamicContent.innerHTML = contentData[section];
                     dynamicContent.style.opacity = 1;
