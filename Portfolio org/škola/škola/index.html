@@ -8,10 +8,6 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     * {
       margin: 0;
       padding: 0;
@@ -27,27 +23,19 @@
       position: relative;
     }
 
-    /* Pozadí – citát (Upraveno na absolute, aby roloval pryč) */
-    .background-quote {
-      position: absolute; 
-      top: 8%;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2.2rem;
-      font-weight: 700;
-      opacity: 0.08;
-      color: #ffffff;
-      width: 80%;
+    /* Výrazný citát umístěný nahoře nad obsahem */
+    .quote-container {
       text-align: center;
-      filter: blur(1px);
-      animation: float 10s ease-in-out infinite alternate;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    @keyframes float {
-      0% { transform: translateX(-50%) translateY(0); }
-      100% { transform: translateX(-50%) translateY(10px); }
+      padding: 60px 20px 0 20px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.75);
+      font-style: italic;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+      line-height: 1.5;
     }
 
     /* Úvodní sekce */
@@ -57,7 +45,7 @@
       justify-content: space-between;
       width: 85%;
       max-width: 1200px;
-      margin: 120px auto;
+      margin: 60px auto 120px auto;
       z-index: 10;
       position: relative;
       gap: 40px;
@@ -95,11 +83,15 @@
       padding: 12px 30px;
       border-radius: 50px;
       transition: 0.3s;
+      border: none;
+      font-family: inherit;
+      font-size: 1rem;
     }
 
     .btn:hover {
       opacity: 0.85;
       transform: scale(1.05);
+      cursor: pointer;
     }
 
     .image-section {
@@ -159,8 +151,55 @@
       box-shadow: 0 0 30px rgba(123, 97, 255, 0.1);
     }
 
-    .contact .btn {
-      margin-top: 20px;
+    /* Kontaktní formulář na vzhled */
+    .contact-form-visual {
+      max-width: 500px;
+      margin: 40px auto 0 auto;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid rgba(123, 97, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #ff8cff;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 10px;
+      border: 1px solid rgba(123, 97, 255, 0.2);
+      background: rgba(10, 15, 37, 0.6);
+      color: white;
+      font-family: inherit;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: #ff8cff;
+      box-shadow: 0 0 10px rgba(255, 140, 255, 0.2);
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    .contact-form-visual .btn {
+      width: 100%;
     }
 
     footer {
@@ -185,8 +224,9 @@
       .mission, section p {
         font-size: 1.3rem;
       }
-      .background-quote {
-        font-size: 3rem;
+      .quote-container {
+        font-size: 1.8rem;
+        max-width: 1000px;
       }
     }
 
@@ -195,7 +235,7 @@
       .container {
         flex-direction: column;
         text-align: center;
-        margin: 80px auto;
+        margin: 40px auto 80px auto;
         gap: 50px;
       }
       .text-section {
@@ -204,10 +244,9 @@
       .image-section img {
         max-width: 80%;
       }
-      .background-quote {
-        font-size: 1.8rem;
-        top: 5%;
-        width: 90%;
+      .quote-container {
+        font-size: 1.2rem;
+        padding-top: 40px;
       }
     }
 
@@ -225,18 +264,22 @@
       .important {
         padding: 60px 20px;
       }
-      .background-quote {
-        font-size: 1.3rem;
-        top: 2%;
+      .quote-container {
+        font-size: 1.1rem;
+        width: 90%;
       }
       .image-section img {
         max-width: 100%;
+      }
+      .contact-form-visual {
+        padding: 20px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="background-quote">
+
+  <div class="quote-container">
     <p>„Vzdělávání je nejmocnější zbraň, kterou můžeme použít k tomu, aby se změnil svět.“</p>
   </div>
 
@@ -281,14 +324,29 @@
     <h2>Náš tým</h2>
     <p>
       Jsme skupina studentů, učitelů a tvůrců, kteří věří, že svět může být lepší, pokud začneme učit jinak.  
-      Každý z nás přináší svůj pohled — z praxe, z výuky i z technologického světa.
+      Každý z nás přináší svůj pohled — z praxe, z výuky i z technologického worlds.
     </p>
   </section>
 
   <section class="fade-in contact">
     <h2>Kontaktuj nás</h2>
     <p>Chceš se přidat nebo máš nápad? Napiš nám!</p>
-    <a href="#" class="btn">Napiš zprávu</a>
+    
+    <form class="contact-form-visual" onsubmit="event.preventDefault();">
+      <div class="form-group">
+        <label>Jméno</label>
+        <input type="text" placeholder="Jan Novák">
+      </div>
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" placeholder="jan@firma.cz">
+      </div>
+      <div class="form-group">
+        <label>Tvoje zpráva</label>
+        <textarea placeholder="Napiš nám, co tě zajímá..."></textarea>
+      </div>
+      <button type="submit" class="btn">Napiš zprávu</button>
+    </form>
   </section>
 
   <footer>
@@ -296,13 +354,48 @@
   </footer>
 
   <script>
-    // Efekt fade-in při scrollování
+    // 1. Efekt fade-in při scrollování
     const fadeEls = document.querySelectorAll('.fade-in');
     window.addEventListener('scroll', () => {
       fadeEls.forEach(el => {
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight - 100) {
           el.classList.add('visible');
+        }
+      });
+    });
+
+    // 2. Kontrolovaný, luxusní plynulý scroll pro tlačítko
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (!targetElement) return;
+
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        
+        const duration = 1500; // Plynulé dojetí trvá přesně 1,5 vteřiny
+        let start = null;
+
+        window.requestAnimationFrame(step);
+
+        function step(timestamp) {
+          if (!start) start = timestamp;
+          const progress = timestamp - start;
+          
+          const easeInOutCubic = progress => progress < .5 ? 4 * progress * progress * progress : (progress - 1) * (2 * progress - 2) * (2 * progress - 2) + 1;
+          const percentage = Math.min(progress / duration, 1);
+
+          window.scrollTo(0, startPosition + distance * easeInOutCubic(percentage));
+
+          if (progress < duration) {
+            window.requestAnimationFrame(step);
+          }
         }
       });
     });
