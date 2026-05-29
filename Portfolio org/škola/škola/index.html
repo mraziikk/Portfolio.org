@@ -4,7 +4,236 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pojďme děti připravit do života</title>
-  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a0f25, #1e1153, #4a148c);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Pozadí – citát (Upraveno na absolute, aby roloval pryč) */
+    .background-quote {
+      position: absolute; 
+      top: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.2rem;
+      font-weight: 700;
+      opacity: 0.08;
+      color: #ffffff;
+      width: 80%;
+      text-align: center;
+      filter: blur(1px);
+      animation: float 10s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateX(-50%) translateY(0); }
+      100% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* Úvodní sekce */
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 85%;
+      max-width: 1200px;
+      margin: 120px auto;
+      z-index: 10;
+      position: relative;
+      gap: 40px;
+    }
+
+    .text-section {
+      flex: 1;
+      max-width: 600px;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      line-height: 1.2;
+      font-weight: 700;
+      background: linear-gradient(90deg, #7b61ff, #ff8cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+    }
+
+    .mission {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #7b61ff, #ff8cff);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 12px 30px;
+      border-radius: 50px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+      transform: scale(1.05);
+    }
+
+    .image-section {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .image-section img {
+      max-width: 450px;
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(123, 97, 255, 0.3);
+      transition: transform 0.5s ease;
+    }
+
+    .image-section img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Sekce obsahu */
+    section {
+      text-align: center;
+      padding: 80px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #7b61ff, #ff8cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    section p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Zvýrazněná sekce „Proč to děláme“ */
+    .important {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 100px 40px;
+      box-shadow: 0 0 30px rgba(123, 97, 255, 0.1);
+    }
+
+    .contact .btn {
+      margin-top: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+
+    /* =========================================
+       RESPONZIVITA PRO VŠECHNA ZAŘÍZENÍ
+       ========================================= */
+
+    /* Velké obrazovky (TV a velké monitory) */
+    @media (min-width: 1600px) {
+      .container {
+        max-width: 1400px;
+      }
+      h1 {
+        font-size: 4.5rem;
+      }
+      .mission, section p {
+        font-size: 1.3rem;
+      }
+      .background-quote {
+        font-size: 3rem;
+      }
+    }
+
+    /* Tablety a menší notebooky */
+    @media (max-width: 968px) {
+      .container {
+        flex-direction: column;
+        text-align: center;
+        margin: 80px auto;
+        gap: 50px;
+      }
+      .text-section {
+        max-width: 100%;
+      }
+      .image-section img {
+        max-width: 80%;
+      }
+      .background-quote {
+        font-size: 1.8rem;
+        top: 5%;
+        width: 90%;
+      }
+    }
+
+    /* Mobily */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      .mission {
+        font-size: 1rem;
+      }
+      section {
+        padding: 60px 20px;
+      }
+      .important {
+        padding: 60px 20px;
+      }
+      .background-quote {
+        font-size: 1.3rem;
+        top: 2%;
+      }
+      .image-section img {
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="background-quote">
@@ -29,7 +258,6 @@
     </div>
   </div>
 
-  <!-- Nová sekce -->
   <section id="why" class="fade-in important">
     <h2>Proč to děláme</h2>
     <p>
@@ -64,7 +292,7 @@
   </section>
 
   <footer>
-    <p>© 2025 Pojďme děti připravit do života</p>
+    <p>© 2026 Pojďme děti připravit do života</p>
   </footer>
 
   <script>
