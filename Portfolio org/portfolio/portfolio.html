@@ -3,40 +3,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="portfolio.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>Portfolio Website</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html{
+            font-size: 62.5%;
+        }
+
+        body{
+            width: 100%;
+            height: 100vh;
+            overflow-x: hidden;
+            background-color: black;
+            color: white;
+        }
+
+        header{
+            margin-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 9%;
+            background-color: transparent;
+            filter: drop-shadow(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo{
+            font-size: 3rem;
+            color: red;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.5s ease;
+        }
+
+        .logo:hover{
+            transform: scale(1.1);
+        }
+
+        nav a{
+            font-size: 1.8rem;
+            color: white;
+            margin-left: 4rem;
+            font-weight: 500;
+            transition: 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover,
+        nav a.active{
+            color: red;
+            border-bottom: 3px solid red;
+        }
+
+        @media(max-width:995px){
+            nav{
+                position: absolute;
+                display: none;
+                top: 0;
+                right: 0;
+                width: 40%;
+                border-left: 3px solid red;
+                border-bottom: 3px solid red;
+                border-bottom-left-radius: 2rem;
+                padding: 1rem solid;
+                background-color: black;
+                border-top: 0.1rem solid rgba(0,0,0,0.1);
+            }
+            nav.active{
+                display: block;
+            }
+            nav a{
+                display: block;
+                font-size: 2rem;
+                margin: 3rem 0;
+            }
+
+            nav a:hover,
+            nav a.active{
+                padding: 1rem;
+                border-radius: 0.5rem;
+                border-bottom: 0.5rem solid red;
+            }
+        }
+
+        section{
+            min-height: 100vh;
+            padding: 5rem 9% 5rem;
+        }
+
+        .home{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8rem;
+            background-color: black;
+        }
+
+        .home .home-content h1{
+            font-size: 6rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        span{
+            color: red;
+        }
+
+        .home-content h3{
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .home-content p{
+            font-size: 1.6rem;
+            line-height: 1.6;
+        }
+
+        .home-img{
+            border-radius: 50%;
+        }
+
+        .home-img img{
+            position: relative;
+            width: 32vw;
+            border-radius: 50%;
+            box-shadow: 0 0 25px solid red;
+            cursor: pointer;
+            transition: 0.2s linear;
+        }
+
+        .home-img img:hover{
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+
+        .social-icons a{
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 4rem;
+            height: 4rem;
+            background-color: transparent;
+            border: 0.2rem solid red;
+            font-size: 2rem;
+            border-radius: 50%;
+            margin: 3rem 1.5rem 3rem 0;
+            transition: 0.3s ease;
+            color: red;
+        }
+
+        .social-icons a:hover{
+            color: black;
+            transform: scale(1.3) translateY(-5px);
+            background-color: red;
+            box-shadow: 0 0 25px red;
+        }
+
+        .btn{
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background-color: black;
+            border-radius: 4rem;
+            font-size: 1.6rem;
+            color: red;
+            letter-spacing: 0.3rem;
+            font-weight: 600;
+            border: 2px solid red;
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover{
+            transform: scale3d(1.03);
+            background-color: red;
+            color: black;
+            box-shadow: 0 0 25px red;
+        }
+
+        /* Dynamický kontejner pro jemný přechod */
+        #dynamic-content {
+            transition: opacity 0.3s ease-in-out;
+            min-height: 250px; /* Zabraňuje "poskakování" tlačítek při změně textu */
+        }
+
+        .typing-text{
+            font-size: 34px;
+            font-weight: 600;
+            min-width: 280px;
+        }
+
+        .typing-text span{
+            position: relative;
+        }
+
+        .typing-text span::before{
+            content: "software Developer";
+            color: red;
+            animation: words 20s infinite;
+        }
+
+        .typing-text span::after{
+            content: "";
+            background-color: black;
+            position: absolute;
+            width: calc(100% + 8px);
+            height: 100%;
+            border-left: 3px solid black;
+            right: -8px;
+            animation: cursor 0.6s infinite;
+        }
+
+        @keyframes cursor{
+            to{
+                border-left: 3px solid red;
+            }
+        }
+
+        @keyframes words{
+            0%, 20%{ content: "Web Developer"; }
+            21%,40%{ content: "SW Developer"; }
+            41%,60%{ content: "Web Designer"; }
+            61%,80%{ content: "Youtuber"; }
+            81%,100%{ content: "Script Writer"; }
+        }
+
+        @media (max-width: 1000px){
+            .home{ gap: 4rem; }
+        }
+
+        @media(max-width:995px){
+            .home{
+                flex-direction: column;
+                margin: 5rem 4rem;
+            }
+            .home .home-content h3{ font-size: 2.5rem; }
+            .home-content h1{ font-size: 5rem; }
+            .home-img img{
+                width: 70vw;
+                margin-top: 4rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <a href="#" class="logo">Lukas</a>
 
         <nav>
-            <a href="#" class="active">Home</a> <!--Odkazy v navigation menu-->
-            <a href="#">Services</a> 
-            <a href="#">Skills</a>
-            <a href="#">Education</a>
-            <a href="#">Experience</a>
-            <a href="#">Contact</a>
+            <a href="#" class="active" data-section="home">Home</a>
+            <a href="#" data-section="services">Services</a> 
+            <a href="#" data-section="skills">Skills</a>
+            <a href="#" data-section="education">Education</a>
+            <a href="#" data-section="experience">Experience</a>
+            <a href="#" data-section="contact">Contact</a>
         </nav>
     </header>
+    
     <section class="home">
         <div class="home-img">
             <img src="fd40d777431cbdc290084662b469c2b1_eb9acf985e4ea70a9ac109f3a190b0f9.jpg.avif" alt="">
         </div>
+        
         <div class="home-content">
-            <h1>Hi, its <span>Lukas</span></h1>
-            <h3 class="typing-text">I am <span></span></h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam ipsum dolores cumque a maxime voluptatum explicabo maiores ducimus vero laudantium nobis, voluptatibus quidem nihil debitis modi soluta molestias illum ab!</p>
+            <div id="dynamic-content">
+                <h1>Hi, its <span>Lukas</span></h1>
+                <h3 class="typing-text">I am <span></span></h3>
+                <p>I am an IT student passionate about web technologies and software development. I enjoy building dynamic websites, managing technical projects, and bringing creative ideas to life.</p>
+            </div>
+            
             <div class="social-icons">
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a> <!--obrazky-->
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="#"><i class="fa-brands fa-github"></i></a>
                 <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
                 <a href="#"><i class="fa-brands fa-instagram"></i></a>
-
             </div>
             <a href="#" class="btn">Hire me</a>
         </div>
     </section>
+
+    <script>
+        // Databáze textů pro jednotlivé záložky
+        const contentData = {
+            home: `
+                <h1>Hi, its <span>Lukas</span></h1>
+                <h3 class="typing-text">I am <span></span></h3>
+                <p>I am an IT student passionate about web technologies and software development. I enjoy building dynamic websites, managing technical projects, and bringing creative ideas to life.</p>
+            `,
+            services: `
+                <h1>My <span>Services</span></h1>
+                <h3>What I <span>offer</span></h3>
+                <p>I specialize in building responsive websites and developing custom software solutions. I also offer hardware diagnostics and system maintenance to keep your tech running smoothly.</p>
+            `,
+            skills: `
+                <h1>My <span>Skills</span></h1>
+                <h3>Tech <span>Stack</span></h3>
+                <p><strong>Web:</strong> HTML, CSS, JavaScript, PHP<br>
+                <strong>Software:</strong> C#, Unity<br>
+                <strong>IT & Hardware:</strong> Linux administration, network infrastructure, and computer hardware optimization.</p>
+            `,
+            education: `
+                <h1>My <span>Education</span></h1>
+                <h3>IT <span>Studies</span></h3>
+                <p>I am actively studying Information Technology, where my coursework covers a wide range of subjects including network configuration, Linux server administration, and electronics.</p>
+            `,
+            experience: `
+                <h1>My <span>Experience</span></h1>
+                <h3>Professional <span>Journey</span></h3>
+                <p>I completed a professional IT internship at <strong>2 HD, s.r.o.</strong>, where I gained practical, hands-on experience working with network infrastructure and IT equipment.</p>
+            `,
+            contact: `
+                <h1>Contact <span>Me</span></h1>
+                <h3>Let's <span>connect</span></h3>
+                <p>Feel free to reach out to me directly at <strong>lukasmraz022@gmail.com</strong> for collaborations, web projects, or IT consulting. You can also connect with me on the social platforms below.</p>
+            `
+        };
+
+        const navLinks = document.querySelectorAll('nav a');
+        const dynamicContent = document.getElementById('dynamic-content');
+
+        // Funkce pro kliknutí na odkazy v menu
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); // Zabrání přeskočení nahoru
+                
+                // 1. Změna červeného podtržení (active class)
+                navLinks.forEach(nav => nav.classList.remove('active'));
+                this.classList.add('active');
+
+                // 2. Zjištění, na co uživatel klikl
+                const section = this.getAttribute('data-section');
+                
+                // 3. Efekt ztmavení
+                dynamicContent.style.opacity = 0;
+                
+                // 4. Výměna textu a opětovné rozsvícení (po 300ms)
+                setTimeout(() => {
+                    dynamicContent.innerHTML = contentData[section];
+                    dynamicContent.style.opacity = 1;
+                }, 300);
+            });
+        });
+    </script>
 </body>
 </html>
