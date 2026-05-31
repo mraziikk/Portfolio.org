@@ -19,11 +19,11 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        html{
+        html {
             font-size: 62.5%;
         }
 
-        body{
+        body {
             width: 100%;
             height: 100vh;
             overflow-x: hidden;
@@ -31,7 +31,7 @@
             color: white;
         }
 
-        header{
+        header {
             margin-top: 20px;
             position: fixed;
             top: 0;
@@ -39,14 +39,13 @@
             width: 100%;
             padding: 1rem 9%;
             background-color: transparent;
-            filter: drop-shadow(10px);
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
         }
 
-        .logo{
+        .logo {
             font-size: 3rem;
             color: red;
             font-weight: 800;
@@ -54,11 +53,24 @@
             transition: 0.5s ease;
         }
 
-        .logo:hover{
+        .logo:hover {
             transform: scale(1.1);
         }
 
-        nav a{
+        /* Ikonka pro mobilní menu (na PC skrytá) */
+        #menu-icon {
+            font-size: 3.6rem;
+            color: white;
+            cursor: pointer;
+            display: none;
+            transition: 0.3s;
+        }
+
+        #menu-icon:hover {
+            color: red;
+        }
+
+        nav a {
             font-size: 1.8rem;
             color: white;
             margin-left: 4rem;
@@ -68,48 +80,17 @@
         }
 
         nav a:hover,
-        nav a.active{
+        nav a.active {
             color: red;
             border-bottom: 3px solid red;
         }
 
-        @media(max-width:995px){
-            nav{
-                position: absolute;
-                display: none;
-                top: 0;
-                right: 0;
-                width: 40%;
-                border-left: 3px solid red;
-                border-bottom: 3px solid red;
-                border-bottom-left-radius: 2rem;
-                padding: 1rem solid;
-                background-color: black;
-                border-top: 0.1rem solid rgba(0,0,0,0.1);
-            }
-            nav.active{
-                display: block;
-            }
-            nav a{
-                display: block;
-                font-size: 2rem;
-                margin: 3rem 0;
-            }
-
-            nav a:hover,
-            nav a.active{
-                padding: 1rem;
-                border-radius: 0.5rem;
-                border-bottom: 0.5rem solid red;
-            }
-        }
-
-        section{
+        section {
             min-height: 100vh;
             padding: 5rem 9% 5rem;
         }
 
-        .home{
+        .home {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -117,46 +98,46 @@
             background-color: black;
         }
 
-        .home .home-content h1{
+        .home .home-content h1 {
             font-size: 6rem;
             font-weight: 700;
             line-height: 1.3;
         }
 
-        span{
+        span {
             color: red;
         }
 
-        .home-content h3{
+        .home-content h3 {
             font-size: 4rem;
             margin-bottom: 1rem;
             font-weight: 700;
         }
 
-        .home-content p{
+        .home-content p {
             font-size: 1.6rem;
             line-height: 1.6;
+            margin-bottom: 2rem;
         }
 
-        .home-img{
+        .home-img {
             border-radius: 50%;
         }
 
-        .home-img img{
+        .home-img img {
             position: relative;
             width: 32vw;
             border-radius: 50%;
-            box-shadow: 0 0 25px solid red;
+            box-shadow: 0 0 25px red;
             cursor: pointer;
             transition: 0.2s linear;
         }
 
-        .home-img img:hover{
-            font-size: 1.8rem;
-            font-weight: 500;
+        .home-img img:hover {
+            box-shadow: 0 0 40px red;
         }
 
-        .social-icons a{
+        .social-icons a {
             display: inline-flex;
             justify-content: center;
             align-items: center;
@@ -166,19 +147,19 @@
             border: 0.2rem solid red;
             font-size: 2rem;
             border-radius: 50%;
-            margin: 3rem 1.5rem 3rem 0;
+            margin: 1rem 1.5rem 3rem 0;
             transition: 0.3s ease;
             color: red;
         }
 
-        .social-icons a:hover{
+        .social-icons a:hover {
             color: black;
             transform: scale(1.3) translateY(-5px);
             background-color: red;
             box-shadow: 0 0 25px red;
         }
 
-        .btn{
+        .btn {
             display: inline-block;
             padding: 1rem 2.8rem;
             background-color: black;
@@ -192,7 +173,7 @@
             cursor: pointer;
         }
 
-        .btn:hover{
+        .btn:hover {
             transform: scale3d(1.03);
             background-color: red;
             color: black;
@@ -204,62 +185,61 @@
             min-height: 250px;
         }
 
-        .typing-text{
-            font-size: 34px;
-            font-weight: 600;
-            min-width: 280px;
+        /* RESPONZIVITA (Mobily a Tablety) */
+        @media (max-width: 1000px) {
+            .home { gap: 4rem; }
         }
 
-        .typing-text span{
-            position: relative;
-        }
-
-        /* OPRAVA ZDE: Výchozí content zajišťuje zobrazení ve všech prohlížečích */
-        .typing-text span::before{
-            content: "Web Developer";
-            color: red;
-            animation: words 20s infinite;
-        }
-
-        .typing-text span::after{
-            content: "";
-            background-color: black;
-            position: absolute;
-            width: calc(100% + 8px);
-            height: 100%;
-            border-left: 3px solid black;
-            right: -8px; /* Opravena chybějící jednotka px */
-            animation: cursor 0.6s infinite;
-        }
-
-        @keyframes cursor{
-            to{
-                border-left: 3px solid red;
+        @media(max-width: 995px) {
+            #menu-icon {
+                display: block; /* Zobrazit hamburger na mobilu */
             }
-        }
+            
+            nav {
+                position: absolute;
+                display: none; /* Skryto v základu */
+                top: 100%;
+                right: 5%;
+                width: 250px;
+                background-color: black;
+                border: 2px solid red;
+                border-radius: 2rem;
+                padding: 2rem;
+                box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+            }
 
-        @keyframes words{
-            0%, 20%{ content: "Web Developer"; }
-            21%,40%{ content: "SW Developer"; }
-            41%,60%{ content: "Web Designer"; }
-            61%,80%{ content: "Youtuber"; }
-            81%,100%{ content: "Script Writer"; }
-        }
+            nav.active {
+                display: block; /* Zobrazí se po kliknutí na ikonu */
+            }
 
-        @media (max-width: 1000px){
-            .home{ gap: 4rem; }
-        }
+            nav a {
+                display: block;
+                font-size: 2rem;
+                margin: 2rem 0;
+                text-align: center;
+                margin-left: 0;
+                border-bottom: none;
+            }
 
-        @media(max-width:995px){
-            .home{
+            nav a:hover,
+            nav a.active {
+                background-color: red;
+                color: black;
+                border-radius: 1rem;
+                padding: 0.5rem;
+            }
+
+            .home {
                 flex-direction: column;
-                margin: 5rem 4rem;
+                margin: 8rem 4rem 5rem 4rem;
+                text-align: center;
             }
-            .home .home-content h3{ font-size: 2.5rem; }
-            .home-content h1{ font-size: 5rem; }
-            .home-img img{
-                width: 70vw;
-                margin-top: 4rem;
+
+            .home .home-content h3 { font-size: 3rem; }
+            .home-content h1 { font-size: 5rem; }
+            .home-img img {
+                width: 60vw;
+                margin-top: 2rem;
             }
         }
     </style>
@@ -267,6 +247,8 @@
 <body>
     <header>
         <a href="#" class="logo">Lukas</a>
+        
+        <i class="fa-solid fa-bars" id="menu-icon"></i>
 
         <nav>
             <a href="#" class="active" data-section="home">Home</a>
@@ -286,7 +268,7 @@
         <div class="home-content">
             <div id="dynamic-content">
                 <h1>Hi, its <span>Lukas</span></h1>
-                <h3 class="typing-text">I am <span></span></h3>
+                <h3>I am a <span>Web Developer</span></h3>
                 <p>I am an IT student passionate about web technologies and software development. I enjoy building dynamic websites, managing technical projects, and bringing creative ideas to life.</p>
             </div>
             
@@ -301,10 +283,11 @@
     </section>
 
     <script>
+        // Databáze pevných textů pro jednotlivé záložky
         const contentData = {
             home: `
                 <h1>Hi, its <span>Lukas</span></h1>
-                <h3 class="typing-text">I am <span></span></h3>
+                <h3>I am a <span>Web Developer</span></h3>
                 <p>I am an IT student passionate about web technologies and software development. I enjoy building dynamic websites, managing technical projects, and bringing creative ideas to life.</p>
             `,
             services: `
@@ -338,18 +321,34 @@
 
         const navLinks = document.querySelectorAll('nav a');
         const dynamicContent = document.getElementById('dynamic-content');
+        const menuIcon = document.getElementById('menu-icon');
+        const navMenu = document.querySelector('nav');
 
+        // Funkce pro rozbalení/sbalení mobilního menu
+        menuIcon.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuIcon.classList.toggle('fa-xmark'); // Změní ikonku na křížek
+        });
+
+        // Funkce pro přepínání obsahu
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 
+                // Přepnutí aktivní třídy u odkazů
                 navLinks.forEach(nav => nav.classList.remove('active'));
                 this.classList.add('active');
 
+                // Skrytí menu na mobilu po kliknutí na odkaz
+                navMenu.classList.remove('active');
+                menuIcon.classList.remove('fa-xmark');
+
                 const section = this.getAttribute('data-section');
                 
+                // Jemné ztmavení
                 dynamicContent.style.opacity = 0;
                 
+                // Změna textu a rozsvícení
                 setTimeout(() => {
                     dynamicContent.innerHTML = contentData[section];
                     dynamicContent.style.opacity = 1;
